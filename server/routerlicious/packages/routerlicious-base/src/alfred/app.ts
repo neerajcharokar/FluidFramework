@@ -105,15 +105,15 @@ export function create(
 							: "";
 						additionalProperties.hashedClientIPAddress = hashedClientIP;
 
-                        const clientIPAddress = req.ip ? req.ip : "";
-                        additionalProperties.clientIP = req.ip;
-                        if (isIPv4(clientIPAddress)) {
-                            additionalProperties.clientIPType = "IPv4";
-                        } else if (isIPv6(clientIPAddress)) {
-                            additionalProperties.clientIPType = "IPv6";
-                        } else {
-                            additionalProperties.clientIPType = "";
-                        }
+						const clientIPAddress = req.ip ? req.ip : "";
+						additionalProperties.clientIP = req.ip;
+						if (isIPv4(clientIPAddress)) {
+							additionalProperties.clientIPType = "IPv4";
+						} else if (isIPv6(clientIPAddress)) {
+							additionalProperties.clientIPType = "IPv6";
+						} else {
+							additionalProperties.clientIPType = "";
+						}
 
 						const XAzureClientIP = "x-azure-clientip";
 						const hashedAzureClientIP = req.headers[XAzureClientIP]
