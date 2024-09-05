@@ -3,6 +3,7 @@
  * Licensed under the MIT License.
  */
 
+import { isIPv4, isIPv6 } from "net";
 import {
 	IDeltaService,
 	IDocumentStorage,
@@ -104,22 +105,15 @@ export function create(
 							: "";
 						additionalProperties.hashedClientIPAddress = hashedClientIP;
 
-						const clientIPAddress = req.ip ? req.ip : "";
-						const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
-						const ipv6Regex = /^([\da-f]{1,4}:){7}[\da-f]{1,4}$/i;
-						if (
-							ipv4Regex.test(clientIPAddress) &&
-							clientIPAddress.split(".").every((part) => Number(part) <= 255)
-						) {
-							additionalProperties.clientIPType = "IPv4";
-						} else if (
-							ipv6Regex.test(clientIPAddress) &&
-							clientIPAddress.split(":").every((part) => part.length <= 4)
-						) {
-							additionalProperties.clientIPType = "IPv6";
-						} else {
-							additionalProperties.clientIPType = "";
-						}
+                        const clientIPAddress = req.ip ? req.ip : "";
+                        additionalProperties.clientIP = req.ip;
+                        if (isIPv4(clientIPAddress)) {
+                            additionalProperties.clientIPType = "IPv4";
+                        } else if (isIPv6(clientIPAddress)) {
+                            additionalProperties.clientIPType = "IPv6";
+                        } else {
+                            additionalProperties.clientIPType = "";
+                        }
 
 						const XAzureClientIP = "x-azure-clientip";
 						const hashedAzureClientIP = req.headers[XAzureClientIP]
