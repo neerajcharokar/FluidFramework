@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-import { fromUtf8ToBase64, TypedEventEmitter } from "@fluidframework/common-utils";
+import { fromUtf8ToBase64, TypedEventEmitter } from "@fluidframework-internal/common-utils";
 import * as git from "@fluidframework/gitresources";
 import { IClient, IClientJoin, ScopeType } from "@fluidframework/protocol-definitions";
 import {
@@ -192,6 +192,18 @@ export function create(
 				return;
 			}
 			try {
+				const ordererUrl: string = config.get("worker:ordererUrl");
+				const document = await storage.getDocument(tenantId, documentId);
+				if (document.session.ordererUrl !== "testUrl") {
+					// Delete after test. ordererUrl) {
+					Lumberjack.info("Redirecting to docs cluster", {
+						documentUrl: document.session.ordererUrl,
+						currentUrl: ordererUrl,
+						targetUrl: `${ordererUrl}${request.originalUrl}`,
+					});
+					response.redirect(308, `${document.session.ordererUrl}${request.originalUrl}`);
+					return;
+				}
 				const signalRoom: IRoom = { tenantId, documentId };
 				const payload: IBroadcastSignalEventPayload = { signalRoom, signalContent };
 				collaborationSessionEventEmitter.emit("broadcastSignal", payload);
