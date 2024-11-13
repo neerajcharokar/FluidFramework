@@ -81,11 +81,15 @@ describe("Routerlicious", () => {
 			};
 			const defaultAppTenants: IAlfredTenant[] = [appTenant1, appTenant2];
 			const defaultTenantManager = new TestTenantManager();
+			const session = {
+				ordererUrl: "testUrl",
+			}
 			const document1 = {
 				_id: "doc-1",
 				tenantId: appTenant1.id,
 				documentId: "doc-1",
 				content: "Hello, World!",
+				session,
 			};
 			const defaultDbFactory = new TestDbFactory({
 				[documentsCollectionName]: [document1],

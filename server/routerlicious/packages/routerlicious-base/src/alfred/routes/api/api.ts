@@ -192,13 +192,10 @@ export function create(
 				return;
 			}
 			try {
-				console.log("🐞 inside try");
 				const ordererUrl: string = config.get("worker:ordererUrl");
 				const document = await storage.getDocument(tenantId, documentId);
-				console.log("🐞 got document", document);
 				if (document.session.ordererUrl !== "testUrl") {
 					// Delete after test. ordererUrl) {
-					console.log("🐞 Redirecting to docs cluster");
 					Lumberjack.info("Redirecting to docs cluster", {
 						documentUrl: document.session.ordererUrl,
 						currentUrl: ordererUrl,
@@ -213,7 +210,6 @@ export function create(
 				response.status(200).send("OK");
 				return;
 			} catch (error) {
-				console.log("🐞", error);
 				response.status(500).send(error);
 				return;
 			}
