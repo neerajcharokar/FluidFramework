@@ -353,7 +353,7 @@ extends:
               - publish: $(Build.ArtifactStagingDirectory)
                 artifact: buildOutput
 
-          - ${{ each taskTestStep in parameters.taskTest }}:
+      - ${{ each taskTestStep in parameters.taskTest }}:
               - job: Test_${{ taskTestStep }}
                 displayName: "Run Task Test ${{ taskTestStep }}"
                 dependsOn: build # Make this job depend on the build job
@@ -611,7 +611,7 @@ extends:
               # this is used to inject telemetry key file and upload built devtools extension.
               - ${{ parameters.additionalBuildSteps }}
 
-            templateContext:
+        templateContext:
               outputParentDirectory: $(Build.ArtifactStagingDirectory)
               outputs:
                 - ${{ if ne(parameters.taskPack, false) }}:
