@@ -83,7 +83,7 @@ describe("Routerlicious", () => {
 			const defaultTenantManager = new TestTenantManager();
 			const session = {
 				ordererUrl: "testUrl",
-			}
+			};
 			const document1 = {
 				_id: "doc-1",
 				tenantId: appTenant1.id,
