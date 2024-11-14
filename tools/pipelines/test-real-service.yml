@@ -49,7 +49,7 @@ stages:
       testPackage: ${{ variables.testPackage }}
       testWorkspace: ${{ variables.testWorkspace }}
       artifactBuildId: $(resources.pipeline.client.runID)
-      testCommand: test:realsvc:routerlicious:report
+      testCommand: loop-tests
       continueOnError: true
       r11sSelfSignedCertSecureFile: wu2-tls-certificate.pem
       stageVariables:
