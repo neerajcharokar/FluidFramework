@@ -383,6 +383,11 @@ stages:
               key: '"compat-version-installs" | "$(Agent.OS)" | "${{ parameters.testCommand }}" | "${{ variant.name }}"'
               path: ${{ parameters.testWorkspace }}/node_modules/@fluid-private/test-version-utils/node_modules/.legacy/
 
+        - script: |
+            chmod +x run-tests-.sh
+          displayName: 'Make script executable'
+          workingDirectory: ${{ parameters.testWorkspace }}/node_modules/${{ parameters.testPackage }}
+
         # run the test
         - task: Npm@1
           displayName: '[test] ${{ parameters.testCommand }} ${{ variant.flags }}'
