@@ -45,7 +45,7 @@ stages:
     parameters:
       stageId: e2e_routerlicious
       stageDisplayName: e2e - routerlicious
-      poolBuild: Small
+      poolBuild: Small-eastus2
       testPackage: ${{ variables.testPackage }}
       testWorkspace: ${{ variables.testWorkspace }}
       artifactBuildId: $(resources.pipeline.client.runID)
