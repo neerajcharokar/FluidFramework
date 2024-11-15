@@ -180,7 +180,7 @@ variables:
       buildNumberInPatch: ''
 
 extends:
-  template: /tools/pipelines/templates/build-npm-package-test.yml@self
+  template: /tools/pipelines/templates/build-npm-package.yml@self
   parameters:
     publish: ${{ variables.publish }}
     publishOverride: ${{ parameters.publishOverride }}
