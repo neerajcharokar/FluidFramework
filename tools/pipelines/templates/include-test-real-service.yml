@@ -154,7 +154,10 @@ stages:
 
         steps:
         # Setup
-        - checkout: none
+        # Making this checkout the repo so I can copy the latest version of the run-tests.sh script, to overwrite
+        # whichever version was put into the published e2e tests package during the run of build - client, so I can
+        # iterate more quickly without having to rerun build-client.
+        - checkout: self
           clean: true
 
         # Install self-signed cert for R11s deployment in local cert store
@@ -383,9 +386,14 @@ stages:
               key: '"compat-version-installs" | "$(Agent.OS)" | "${{ parameters.testCommand }}" | "${{ variant.name }}"'
               path: ${{ parameters.testWorkspace }}/node_modules/@fluid-private/test-version-utils/node_modules/.legacy/
 
+        # In order to not need to re-run build-client if I make changes to the script, I manually check out just that
+        # file in the repo, and overwrite the version of the file which was included in the published e2e tests package
+        # with the one from the repo.
         - script: |
+            set -eu -o pipefail
+            cp $(Build.SourcesDirectory)/packages/test/test-end-to-end-tests/run-tests.sh .
             chmod +x run-tests.sh
-          displayName: 'Make script executable'
+          displayName: 'Use run-tests.sh file from repo'
           workingDirectory: ${{ parameters.testWorkspace }}/node_modules/${{ parameters.testPackage }}
 
         # run the test
