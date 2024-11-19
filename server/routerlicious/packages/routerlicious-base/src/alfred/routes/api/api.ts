@@ -192,14 +192,15 @@ export function create(
 				return;
 			}
 			try {
-				const ordererUrl: string = config.get("worker:ordererUrl");
+				const ordererUrl: string = config.get("worker:serverUrl");
 				const document = await storage.getDocument(tenantId, documentId);
-				if (document.session.ordererUrl !== "testUrl") {
-					// Delete after test. ordererUrl) {
+				// TODO: delete
+				const redirect: boolean = config.get("redirect");
+				if (document.session.ordererUrl !== ordererUrl || redirect) {
 					Lumberjack.info("Redirecting to docs cluster", {
 						documentUrl: document.session.ordererUrl,
 						currentUrl: ordererUrl,
-						targetUrl: `${ordererUrl}${request.originalUrl}`,
+						targetUrlAndPath: `>${document.session.ordererUrl}<-doc url, original path->${request.originalUrl}<`,
 					});
 					response.redirect(308, `${document.session.ordererUrl}${request.originalUrl}`);
 					return;
