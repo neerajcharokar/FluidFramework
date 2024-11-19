@@ -23,3 +23,4 @@ do
 done
 
 echo "Tests failed with status $STATUS"
+exit $STATUS
