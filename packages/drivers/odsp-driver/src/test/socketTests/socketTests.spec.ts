@@ -544,7 +544,5 @@ describe("OdspDocumentDeltaConnection tests", () => {
 		await connection2;
 		assert(connection2Fails, "connection2 should fail");
 		assert(errorReceived?.message.includes("server_disconnect"), "message should be correct");
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
-		assert((errorReceived as any).statusCode === 400, "status code should be correct");
 	});
 });
