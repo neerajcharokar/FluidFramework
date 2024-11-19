@@ -4,7 +4,7 @@ STATUS=0
 COUNTER=0
 while [ $STATUS -eq 0 ]
 do
-  if [ $COUNTER -gt 100 ]
+  if [ $COUNTER -gt 1000 ]
 	then
 		echo "Ran 100 times with no failures. Stopping";
 		exit 0;
