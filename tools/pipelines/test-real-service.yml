@@ -51,6 +51,7 @@ stages:
       artifactBuildId: $(resources.pipeline.client.runID)
       testCommand: loop-tests
       continueOnError: true
+      timeoutInMinutes: 120
       r11sSelfSignedCertSecureFile: wu2-tls-certificate.pem
       stageVariables:
         - group: e2e-r11s-lock
