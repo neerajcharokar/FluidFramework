@@ -207,6 +207,11 @@ export function create(
 				}
 				const signalRoom: IRoom = { tenantId, documentId };
 				const payload: IBroadcastSignalEventPayload = { signalRoom, signalContent };
+				// TODO: Delete
+				Lumberjack.info("Broadcasting signal", {
+					signalRoom,
+					signalContent,
+				});
 				collaborationSessionEventEmitter.emit("broadcastSignal", payload);
 				response.status(200).send("OK");
 				return;

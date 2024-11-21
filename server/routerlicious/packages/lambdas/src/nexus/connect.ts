@@ -607,8 +607,11 @@ function setUpSignalListenerForRoomBroadcasting(
 		if (signalRoom.documentId === room.documentId && signalRoom.tenantId === room.tenantId) {
 			try {
 				const runtimeMessage = createRuntimeMessage(signalContent);
-
+				// TODO: delete
+				Lumberjack.info("Broadcasting signal from external API 1");
 				try {
+					// TODO: delete
+					Lumberjack.info("Broadcasting signal from external API 2");
 					socket.emitToRoom(getRoomId(signalRoom), "signal", runtimeMessage);
 				} catch (error) {
 					const errorMsg = `Failed to broadcast signal from external API.`;
