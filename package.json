@@ -48,6 +48,7 @@
 		"ci:test:realsvc:tinylicious:coverage": "c8 --no-clean pnpm run -r --no-sort --stream --no-bail test:realsvc:tinylicious:report ",
 		"ci:test:stress:tinylicious": "pnpm run -r --no-sort --stream --no-bail test:stress:tinylicious:report ",
 		"ci:test:stress:tinylicious:coverage": "c8 --no-clean pnpm run -r --no-sort --stream --no-bail test:stress:tinylicious:report ",
+		"ci:alltests:concurrently": "concurrently npm:ci:test:realsvc:tinylicious:coverage  npm:ci:test:mocha:coverage npm:ci:test:jest:coverage npm:check:are-the-types-wrong npm:ci:test:stress:tinylicious:coverage npm:ci:test:realsvc:local --maxProcesses 2",
 		"clean": "fluid-build --task clean",
 		"clean:docs": "rimraf --glob \"**/_api-extractor-temp*\"",
 		"clean:nyc": "rimraf --glob \"nyc/**\"",
