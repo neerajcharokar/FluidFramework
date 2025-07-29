@@ -15,6 +15,7 @@ export class ResponseSizeMiddleware {
 			const originalSend = res.send;
 			res.send = (body) => {
 				let responseSize: number;
+				console.log("responseSizeMiddleware body", body);
 				try {
 					responseSize = Buffer.byteLength(
 						typeof body === "string" ? body : JSON.stringify(body),
