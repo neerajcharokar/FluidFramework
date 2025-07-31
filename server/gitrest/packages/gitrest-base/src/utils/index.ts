@@ -62,4 +62,3 @@ export {
 	IsomorphicGitRepositoryManager,
 } from "./isomorphicgitManager";
 export { RedisFsConfig, RedisFsManager } from "./redisFs";
-export { responseLoggingMiddleware } from "./responseLoggingMiddleware";

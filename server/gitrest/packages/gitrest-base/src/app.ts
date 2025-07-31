@@ -36,7 +36,6 @@ import {
 	IFileSystemManagerFactories,
 	IRepoManagerParams,
 	IRepositoryManagerFactory,
-	responseLoggingMiddleware,
 } from "./utils";
 
 function getTenantIdForGitRestRequest(params: IRepoManagerParams, request: express.Request) {
@@ -103,10 +102,6 @@ export function create(
 	app.use(urlencoded({ limit: requestSize, extended: false }));
 
 	app.use(cors());
-
-	// Add response logging middleware for debugging
-	app.use(responseLoggingMiddleware());
-
 	const responseSizeLimitInMegabytes = store.get("responseSizeLimitInMegabytes") ?? 97; // 97MB
 	const responseSizeMiddleware = new ResponseSizeMiddleware(responseSizeLimitInMegabytes);
 	app.use(responseSizeMiddleware.validateResponseSize());
