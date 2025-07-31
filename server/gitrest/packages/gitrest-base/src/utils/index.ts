@@ -21,6 +21,7 @@ export {
 	IStorageRoutingId,
 } from "./definitions";
 export { FsPromisesBase } from "./fileSystemBase";
+export { ResponseSizeMiddleware } from "./responseSizeMiddleware";
 export {
 	SystemErrors,
 	isFilesystemError,

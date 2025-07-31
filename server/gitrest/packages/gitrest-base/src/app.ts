@@ -21,7 +21,6 @@ import {
 	bindAbortControllerContext,
 	bindTelemetryContext,
 	jsonMorganLoggerMiddleware,
-	ResponseSizeMiddleware,
 } from "@fluidframework/server-services-utils";
 import { json, urlencoded } from "body-parser";
 import compression from "compression";
@@ -36,6 +35,7 @@ import {
 	IFileSystemManagerFactories,
 	IRepoManagerParams,
 	IRepositoryManagerFactory,
+	ResponseSizeMiddleware,
 } from "./utils";
 
 function getTenantIdForGitRestRequest(params: IRepoManagerParams, request: express.Request) {
